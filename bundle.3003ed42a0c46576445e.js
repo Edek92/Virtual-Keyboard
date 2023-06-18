@@ -10474,8 +10474,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 console.log(2 + 6);
+const num = 15;
+const sum = n => n ** 2;
+console.log(sum(num));
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle.414a026a03edd2227652.js.map
+//# sourceMappingURL=bundle.3003ed42a0c46576445e.js.map
