@@ -1,4 +1,6 @@
 import './index.html';
-import './style.css';
+import './sass/style.sass';
 
-console.log(2 + 6);
+import Creator from './scripts/wrappers';
+
+Creator();

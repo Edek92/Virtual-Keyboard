@@ -18,31 +18,31 @@ module.exports = {
   devServer: {
     port: '3000',
     open: true,
-    hot: true
+    hot: true,
   },
   entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'script.js')],
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     filename: 'bundle.[contenthash].js',
-    assetModuleFilename: 'assets/[hash][ext]'
+    assetModuleFilename: 'assets/[hash][ext]',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html')
+      template: path.resolve(__dirname, 'src', 'index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name].[contenthash].css',
     }),
     new ESLintWebpackPlugin({
-      extensions: ['ts', 'js']
-    })
+      extensions: ['ts', 'js'],
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         test: /\.(c|sa|sc)ss$/i,
@@ -54,19 +54,19 @@ module.exports = {
             options: {
               postcssOptions: {
                 // Possible mistake here and on 6 str
-                plugins: [PostcssPresetENV]
-              }
-            }
+                plugins: [PostcssPresetENV],
+              },
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.woff2?$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name].[ext]'
-        }
+          filename: 'fonts/[name].[ext]',
+        },
       },
       {
         test: /\.(jpe?g|png|svg|webp|gif)$/i,
@@ -75,27 +75,27 @@ module.exports = {
             loader: 'image-webpack-loader',
             options: {
               mozjpeg: {
-                progressive: true
+                progressive: true,
               },
               // optipng.enabled: false will disable optipng
               optipng: {
-                enabled: false
+                enabled: false,
               },
               pngquant: {
                 quality: [0.65, 0.90],
-                speed: 4
+                speed: 4,
               },
               gifsicle: {
-                interlaced: false
+                interlaced: false,
               },
               // the webp option will enable WEBP
               webp: {
-                quality: 75
-              }
-            }
-          }
+                quality: 75,
+              },
+            },
+          },
         ],
-        type: 'asset/resource'
+        type: 'asset/resource',
       },
       {
         test: /\.(?:js|mjs|cjs)$/i,
@@ -104,11 +104,11 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', { targets: 'defaults' }]
-            ]
-          }
-        }
-      }
-    ]
-  }
+              ['@babel/preset-env', { targets: 'defaults' }],
+            ],
+          },
+        },
+      },
+    ],
+  },
 };
