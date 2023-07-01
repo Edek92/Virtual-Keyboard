@@ -10,7 +10,7 @@ class Creator {
       this.addClass('keyboard');
     } else if (this.parent.className === 'keyboard') {
       for (let i = 0; i <= 5; i += 1) {
-        this.addClass('keyboard__wrapper', i);
+        this.addClass('wrapper', i);
       }
     }
   }
@@ -19,21 +19,21 @@ class Creator {
     if (num === undefined) {
       this.createElem('div', className);
     } else if (num === 0) {
-      this.createElem('h1', className, 'keyboard__title', 'RSS VIRTUAL KEYBOARD');
+      this.createElem('h1', className, 'title', 'VIRTUAL KEYBOARD');
     } else if (num === 1) {
-      this.createElem('textarea', className, 'keyboard__textarea');
+      this.createElem('textarea', className, 'textarea');
     } else if (num === 2) {
-      this.createElem('div', className, 'keyboard__buttons');
-      const workField = document.querySelector('.keyboard__buttons');
+      this.createElem('div', className, 'buttons-area');
+      const workField = document.querySelector('.buttons-area');
       for (let i = 0; i < 5; i += 1) {
         const row = document.createElement('div');
         row.classList.add('row', `${i + 1}-row`);
         workField.append(row);
       }
     } else if (num === 3) {
-      this.createElem('div', className, 'keyboard__label', 'The keyboard was created in the Mac OS operating system');
+      this.createElem('div', className, 'footer', 'The keyboard was created in the MacOS operating system');
     } else if (num === 4) {
-      this.createElem('div', className, 'change-language', 'To switch the language combination: left ctrl + alt');
+      this.createElem('div', className, 'footer', 'To switch the language combination: left ctrl + alt');
     }
   }
 
