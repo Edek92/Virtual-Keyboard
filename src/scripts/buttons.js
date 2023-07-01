@@ -18,7 +18,7 @@ const fourthRowButtons = [['shift', 'shift', 'shift', 'shift'], ['z', 'Z', 'я',
 
 const fifthRowButtons = [['fn', 'fn', 'fn', 'fn'], ['control', 'control', 'control', 'control'], ['option', 'option', 'option', 'option'],
   ['command', 'command', 'command', 'command'], ['space', 'space', 'space', 'space'], ['command', 'command', 'command', 'command'],
-  ['option', 'option', 'option', 'option'], ['◄', '◄', '◄', '◄'], ['▼', '▼', '▼', '▼'], ['►', '►', '►', '►']];
+  ['option', 'option', 'option', 'option'], ['◀', '◀', '◀', '◀'], ['▼', '▼', '▼', '▼'], ['►', '►', '►', '►']];
 
 class CreatorOfFirstRowButtons {
   constructor(parent, symbolsList, iterator, whatCase = 'lower', language = 'en') {

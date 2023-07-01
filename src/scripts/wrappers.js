@@ -33,7 +33,7 @@ class Creator {
     } else if (num === 3) {
       this.createElem('div', className, 'footer', 'The keyboard was created in the MacOS operating system');
     } else if (num === 4) {
-      this.createElem('div', className, 'footer', 'To switch the language combination: left ctrl + alt');
+      this.createElem('div', className, 'footer', 'To switch the language combination: control + option or fn');
     }
   }
 

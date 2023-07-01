@@ -3,20 +3,25 @@
     width: 700px
     
 .title
+    margin: 20px
+    font-size: 26px
     text-align: center
 
 .textarea
     width: 100%
     min-height: 200px
+    padding: 10px
 
 .buttons-area
-    height: 230px
+    height: 234px
+    margin-top: 10px
     padding: 5px
     display: flex
     flex-direction: column
     justify-content: space-between
     border: #000000 solid 1px
     border-radius: 2px
+    background-color: $field_color_bg
 
 .row
     display: flex
@@ -25,21 +30,31 @@
 .button
     width: 40px
     height: 40px
-    border: #000000 solid 1px
     border-radius: 2px
     text-align: center
-    vertical-align: middle
     cursor: pointer
+    line-height: 40px
+    background-color: $regular_buttons_color_bg
+    color: #FFFFFF
+    transition: all 0.2s
+    &__delete, &__tab, &__caps-lock, &__return, &__shift, &__space, &__option,
+    &__command, &__control, &__fn
+        background-color: $special_buttons_color_bg
+        font-weight: bold
+        font-size: 11px
+    &__▲, &__◀, &__▼, &__►
+        background-color: $arrow_buttons_color_bg
+        font-size: 12px
     &__delete
         width: 90px
     &__tab
-        width: 65px
+        width: 75px
     &__\\
-        width: 65px
+        width: 55px
     &__caps-lock
-        width: 80px
-    &__return
         width: 100px
+    &__return
+        width: 80px
     &__shift
         width: 130px
         &_right
@@ -48,6 +63,12 @@
         width: 60px
     &__space
         width: 240px
+    &:hover
+        background-color: $hover_color_bg
+    &:active
+        background-color: $active_color_bg
 
 .footer
+    margin-top: 10px
+    font-size: 18px
     text-align: center
