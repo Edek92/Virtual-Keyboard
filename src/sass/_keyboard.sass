@@ -41,37 +41,40 @@
     background-color: $regular_buttons_color_bg
     color: #FFFFFF
     transition: all 0.2s
-    &__delete, &__tab, &__caps-lock, &__return, &__shift, &__space, &__option,
-    &__command, &__control, &__fn
+    &-delete, &-tab, &-caps-lock, &-return, &-shift, &-space, &-option,
+    &-command, &-control, &-fn
         background-color: $special_buttons_color_bg
         font-weight: bold
         font-size: 11px
-    &__▲, &__◀, &__▼, &__►
+    &-▲, &-◀, &-▼, &-►
         background-color: $arrow_buttons_color_bg
         font-size: 12px
-    &__delete
+    &-delete
         width: 90px
-    &__tab
+    &-tab
         width: 75px
-    &__\\
+    &-\\
         width: 55px
-    &__caps-lock
+    &-caps-lock
         width: 100px
-    &__return
+    &-return
         width: 80px
-    &__shift
+    &-shift
         width: 130px
         &_right
             width: 50px
-    &__command
+    &-command
         width: 60px
-    &__space
+    &-space
         width: 240px
     &:hover
         background-color: $hover_color_bg
     &:active
         background-color: $active_color_bg
         border-radius: 50px
+
+.hidden 
+    display: none
 
 .footer
     margin-top: 10px
