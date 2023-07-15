@@ -3,8 +3,10 @@ import './sass/style.sass';
 
 import Creator from './scripts/wrappers';
 import CreatorOfButtons from './scripts/buttons';
-import toggler from './scripts/action';
+import pressKey from './scripts/action';
+import LangToggler from './scripts/languages';
 
 Creator();
 CreatorOfButtons();
-toggler();
+LangToggler();
+pressKey();

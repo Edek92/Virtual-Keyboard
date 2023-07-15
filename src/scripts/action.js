@@ -1,19 +1,33 @@
-// const buttons = document.querySelectorAll('.button');
-const fn = document.querySelector('.button-fn');
-const en = document.querySelectorAll('.en');
-const blr = document.querySelectorAll('.blr');
+// import { firstRowButtons, secondRowButtons, thirdRowButtons,
+// fourthRowButtons, fifthRowButtons } from database;
 
-function toggler() {
-  fn.addEventListener('click', () => {
-    en.forEach((elem) => {
-      elem.classList.toggle('hidden');
-    });
-    blr.forEach((elem) => {
-      elem.classList.toggle('hidden');
-    });
-  });
+// const btn = document.querySelectorAll('.button');
+// const textarea = document.querySelector('.textarea');
+
+class ButtonAction {
+  constructor(shift = false, capsLock = false) {
+    this.shift = shift;
+    this.capsLock = capsLock;
+  }
+
+  pressKey() {
+    if (!this.shift && !this.capsLock) {
+
+      // textarea.addEventListener('keydown', (event) => {
+      //   event.preventDefault();
+      //   textarea.textContent += event.code;
+      // });
+
+      // btn.forEach((elem) => {
+      //   elem.addEventListener('click', (event) => {
+      //     event.preventDefault();
+      //     textarea.textContent += event.code;
+      //   });
+      // });
+    }
+  }
 }
 
-toggler();
+new ButtonAction().pressKey();
 
-export default toggler;
+export default ButtonAction;
