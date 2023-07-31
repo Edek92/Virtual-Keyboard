@@ -8,25 +8,27 @@ class LangToggler {
   }
 
   toggler() {
-    fn.addEventListener('click', () => {
-      if (this.english) {
-        en.forEach((elem) => {
-          elem.classList.add('hidden');
-        });
-        blr.forEach((elem) => {
-          elem.classList.remove('hidden');
-        });
-        this.english = false;
-      } else {
-        en.forEach((elem) => {
-          elem.classList.remove('hidden');
-        });
-        blr.forEach((elem) => {
-          elem.classList.add('hidden');
-        });
-        this.english = true;
-      }
-    });
+    fn.addEventListener('click', this.func);
+  }
+
+  func() {
+    if (this.english) {
+      en.forEach((elem) => {
+        elem.classList.add('hidden');
+      });
+      blr.forEach((elem) => {
+        elem.classList.remove('hidden');
+      });
+      this.english = false;
+    } else {
+      en.forEach((elem) => {
+        elem.classList.remove('hidden');
+      });
+      blr.forEach((elem) => {
+        elem.classList.add('hidden');
+      });
+      this.english = true;
+    }
   }
 }
 
