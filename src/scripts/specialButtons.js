@@ -29,30 +29,29 @@ class WhatSpesialBtns {
     // hideButtonsArray, disActiveClass, isFalseFlag2 = false)
 
     this.removeEffectsWithKey('CapsLock', 'nothing', 'capsLock', nothingBtns, capsLockBtns, 'button button-caps-lock active');
-    this.removeEffectsWithKey('ShiftLeft', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift active', 'capsLock');
-    this.removeEffectsWithKey('ShiftLeft', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift active');
-    this.removeEffectsWithKey('ShiftRight', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift button-shift_right active', 'capsLock');
-    this.removeEffectsWithKey('ShiftRight', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift button-shift_right active');
+    this.removeEffectsWithKey('ShiftLeft', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift active', 'button button-shift button-shift_right active');
+    this.removeEffectsWithKey('ShiftLeft', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift active', 'button button-shift button-shift_right active');
+    this.removeEffectsWithKey('ShiftRight', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift button-shift_right active', 'button button-shift active');
+    this.removeEffectsWithKey('ShiftRight', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift button-shift_right active', 'button button-shift active');
 
-    // Add effects with mouse click (eventListener - MOUSEDOWN)
+    // Toggle effects with mouse click (eventListener - click)
     // addEffectWithMouse(nameOfClass, showButtonsArray, hideButtonsArray, toTrueFlag, toFalseFlag)
 
-    this.addEffectWithMouse('button button-caps-lock', capsLockBtns, nothingBtns, 'capsLock', 'nothing');
-    this.addEffectWithMouse('button button-shift', shiftBtns, nothingBtns, 'shift', 'nothing');
-    this.addEffectWithMouse('button button-shift button-shift_right', shiftBtns, nothingBtns, 'shift', 'nothing');
-
-    // Remove effects with mouse click (eventListener - MOUSEDOWN)
-    // addEffectWithMouse(nameOfClass, showButtonsArray, hideButtonsArray, toTrueFlag, toFalseFlag)
-
-    this.removeEffectWithMouse('button button-caps-lock active', nothingBtns, capsLockBtns, 'nothing', 'capsLock');
-    this.removeEffectWithMouse('button button-shift active', nothingBtns, shiftBtns, 'nothing', 'shift');
-    this.removeEffectWithMouse('button button-shift button-shift_right active', nothingBtns, shiftBtns, 'nothing', 'shift');
+    this.toggleMouse('button button-caps-lock', capsLockBtns, nothingBtns, 'capsLock', 'nothing');
+    this.toggleMouse('button button-shift', shiftBtns, nothingBtns, 'shift', 'nothing');
+    this.toggleMouse('button button-shift', capsLockShiftBtns, capsLockBtns, 'capsLockShift', 'capsLock');
   }
 
-  addEffectWithMouse(nameOfClass, showButtonsArray, hideButtonsArray, toTrueFlag, toFalseFlag) {
+  toggleMouse(
+    nameOfClass,
+    showButtonsArray,
+    hideButtonsArray,
+    toTrueFlag,
+    toFalseFlag,
+  ) {
     btn.forEach((elem) => {
-      elem.addEventListener('mousedown', () => {
-        if (elem.className === nameOfClass && this[toFalseFlag]) {
+      elem.addEventListener('click', () => {
+        if ((elem.className === nameOfClass || elem.className === `${nameOfClass} button-shift_right`) && !this[toTrueFlag] && this[toFalseFlag]) {
           elem.classList.add('active');
           this.show(showButtonsArray);
           this.hide(hideButtonsArray);
@@ -63,27 +62,19 @@ class WhatSpesialBtns {
           // eslint-disable-next-line no-console
           console.log(`CLICK: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
           // eslint-disable-next-line no-console
-          console.log(`Elem.className: ${elem.className}, this.toFalseFlag: ${this[toFalseFlag]}`);
-        }
-      });
-    });
-  }
-
-  removeEffectWithMouse(nameOfClass, showButtonsArray, hideButtonsArray, toTrueFlag, toFalseFlag) {
-    btn.forEach((elem) => {
-      elem.addEventListener('mouseup', () => {
-        if (elem.className === nameOfClass && !this.nothing) {
+          console.log(`Elem.className: ${elem.className}, this.toTrueFlag: ${this[toTrueFlag]}, this.toFalseFlag: ${this[toFalseFlag]}`);
+        } else if ((elem.className === `${nameOfClass} active` || elem.className === `${nameOfClass} button-shift_right active`) && this[toTrueFlag] && !this[toFalseFlag]) {
           elem.classList.remove('active');
-          this.show(showButtonsArray);
-          this.hide(hideButtonsArray);
-          this[toTrueFlag] = true;
-          this[toFalseFlag] = false;
+          this.show(hideButtonsArray);
+          this.hide(showButtonsArray);
+          this[toFalseFlag] = true;
+          this[toTrueFlag] = false;
           // eslint-disable-next-line no-console
           console.log('Remove click');
           // eslint-disable-next-line no-console
           console.log(`CLICK: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
           // eslint-disable-next-line no-console
-          console.log(`Elem.className: ${elem.className}, this.toFalseFlag: ${this[toFalseFlag]}`);
+          console.log(`Elem.className: ${elem.className}, this.toTrueFlag: ${this[toTrueFlag]}, this.toFalseFlag: ${this[toFalseFlag]}`);
         }
       });
     });
@@ -119,14 +110,17 @@ class WhatSpesialBtns {
     showButtonsArray,
     hideButtonsArray,
     disActiveClass,
-    isFalseFlag2 = false,
+    disActiveClass2 = false,
   ) {
     document.addEventListener('keyup', (event) => {
       if (event.code === eventCode) {
-        if (this[isTrueFlag] && !this[isFalseFlag1] && !this[isFalseFlag2]) {
+        if (this[isTrueFlag] && !this[isFalseFlag1]) {
           this.show(showButtonsArray);
           this.hide(hideButtonsArray);
           this.disActive(disActiveClass);
+          if (disActiveClass2) {
+            this.disActive(disActiveClass2);
+          }
           this[isFalseFlag1] = true;
           this[isTrueFlag] = false;
           // eslint-disable-next-line no-console
