@@ -32,6 +32,13 @@ const fifthRowButtons = [['fn', 'fn', 'fn', 'fn', 'fn', 'fn', 'fn', 'fn'],
   ['option', 'option', 'option', 'option', 'option', 'option', 'option', 'option'], ['◀', '◀', '◀', '◀', '◀', '◀', '◀', '◀'],
   ['▼', '▼', '▼', '▼', '▼', '▼', '▼', '▼'], ['►', '►', '►', '►', '►', '►', '►', '►']];
 
+const firstRowKeyCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'];
+const secondRawKeyCodes = ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash'];
+const thirdRawKeyCodes = ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'];
+const fourthRowKeyCodes = ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'];
+const fifthRowKeyCodes = ['Fn', 'ControlLeft', 'AltLeft', 'MetaLeft', 'Space', 'MetaRight', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+
 export {
   firstRowButtons, secondRowButtons, thirdRowButtons, fourthRowButtons, fifthRowButtons,
+  firstRowKeyCodes, secondRawKeyCodes, thirdRawKeyCodes, fourthRowKeyCodes, fifthRowKeyCodes,
 };

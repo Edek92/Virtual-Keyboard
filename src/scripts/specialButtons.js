@@ -5,7 +5,7 @@ const capsLockShiftBtns = document.querySelectorAll('.capsLockShift');
 
 const btn = document.querySelectorAll('.button');
 
-class WhatSpesialBtns {
+export default class WhatSpecialBtns {
   constructor(nothing = true, shift = false, capsLock = false, capsLockShift = false) {
     this.nothing = nothing;
     this.shift = shift;
@@ -57,24 +57,12 @@ class WhatSpesialBtns {
           this.hide(hideButtonsArray);
           this[toTrueFlag] = true;
           this[toFalseFlag] = false;
-          // eslint-disable-next-line no-console
-          console.log('Add click');
-          // eslint-disable-next-line no-console
-          console.log(`CLICK: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
-          // eslint-disable-next-line no-console
-          console.log(`Elem.className: ${elem.className}, this.toTrueFlag: ${this[toTrueFlag]}, this.toFalseFlag: ${this[toFalseFlag]}`);
         } else if ((elem.className === `${nameOfClass} active` || elem.className === `${nameOfClass} button-shift_right active`) && this[toTrueFlag] && !this[toFalseFlag]) {
           elem.classList.remove('active');
           this.show(hideButtonsArray);
           this.hide(showButtonsArray);
           this[toFalseFlag] = true;
           this[toTrueFlag] = false;
-          // eslint-disable-next-line no-console
-          console.log('Remove click');
-          // eslint-disable-next-line no-console
-          console.log(`CLICK: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
-          // eslint-disable-next-line no-console
-          console.log(`Elem.className: ${elem.className}, this.toTrueFlag: ${this[toTrueFlag]}, this.toFalseFlag: ${this[toFalseFlag]}`);
         }
       });
     });
@@ -96,8 +84,6 @@ class WhatSpesialBtns {
           this.active(activeClass);
           this[isFalseFlag] = true;
           this[isTrueFlag] = false;
-          // eslint-disable-next-line no-console
-          console.log(`KEYDOWN: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
         }
       }
     });
@@ -123,8 +109,6 @@ class WhatSpesialBtns {
           }
           this[isFalseFlag1] = true;
           this[isTrueFlag] = false;
-          // eslint-disable-next-line no-console
-          console.log(`KEYUP: nothing = ${this.nothing}, shift = ${this.shift}, capsLock = ${this.capsLock}, capsLockShift = ${this.capsLockShift}`);
         }
       }
     });
@@ -162,7 +146,3 @@ class WhatSpesialBtns {
     this.counter -= 1;
   }
 }
-
-new WhatSpesialBtns().toggler();
-
-export default WhatSpesialBtns;

@@ -4,9 +4,10 @@ const ctrl = document.querySelector('.button-control');
 const altLeft = document.querySelector('.button-option');
 const altRight = document.querySelector('.button-option_right');
 
-class LangToggler {
+export default class LangToggler {
   constructor() {
     this.control = false;
+    this.alt = false;
     this.english = true;
   }
 
@@ -25,6 +26,9 @@ class LangToggler {
         this.control = true;
         ctrl.classList.add('active');
       }
+      if (this.alt && (event.code === eventCode || target === ctrl)) {
+        this.func();
+      }
     });
     target.addEventListener(up, (event) => {
       if (event.code === eventCode || target === ctrl) {
@@ -39,8 +43,10 @@ class LangToggler {
       if (event.code === eventCode || target === altLeft || target === altRight) {
         if (target === altLeft || event.code === 'AltLeft') {
           altLeft.classList.add('active');
+          this.alt = true;
         } else if (target === altRight || event.code === 'AltRight') {
           altRight.classList.add('active');
+          this.alt = true;
         }
       }
       if (this.control && (event.code === eventCode || target === altLeft || target === altRight)) {
@@ -51,8 +57,10 @@ class LangToggler {
       if (event.code === eventCode || target === altLeft || target === altRight) {
         if (target === altLeft || event.code === 'AltLeft') {
           altLeft.classList.remove('active');
+          this.alt = false;
         } else if (target === altRight || event.code === 'AltRight') {
           altRight.classList.remove('active');
+          this.alt = false;
         }
       }
     });
@@ -78,7 +86,3 @@ class LangToggler {
     }
   }
 }
-
-new LangToggler().toggler();
-
-export default LangToggler;
