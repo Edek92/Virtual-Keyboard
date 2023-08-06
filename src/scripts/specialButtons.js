@@ -18,26 +18,26 @@ export default class WhatSpecialBtns {
     // Add effects on keyboard with special keys (eventListener - KEYDOWN)
     // METHOD (event.code, isFalseFlag, isTrueFlag, showButtonsArray, hideButtonsArray, activeClass)
 
-    this.addEffectsWithKey('CapsLock', 'capsLock', 'nothing', capsLockBtns, nothingBtns, 'button button-caps-lock');
-    this.addEffectsWithKey('ShiftLeft', 'shift', 'nothing', shiftBtns, nothingBtns, 'button button-shift');
-    this.addEffectsWithKey('ShiftLeft', 'capsLockShift', 'capsLock', capsLockShiftBtns, capsLockBtns, 'button button-shift');
-    this.addEffectsWithKey('ShiftRight', 'shift', 'nothing', shiftBtns, nothingBtns, 'button button-shift button-shift_right');
-    this.addEffectsWithKey('ShiftRight', 'capsLockShift', 'capsLock', capsLockShiftBtns, capsLockBtns, 'button button-shift button-shift_right');
+    this.addEffectsWithKey('CapsLock', 'capsLock', 'nothing', capsLockBtns, nothingBtns, 'button button-caps-lock CapsLock');
+    this.addEffectsWithKey('ShiftLeft', 'shift', 'nothing', shiftBtns, nothingBtns, 'button button-shift ShiftLeft');
+    this.addEffectsWithKey('ShiftLeft', 'capsLockShift', 'capsLock', capsLockShiftBtns, capsLockBtns, 'button button-shift ShiftLeft');
+    this.addEffectsWithKey('ShiftRight', 'shift', 'nothing', shiftBtns, nothingBtns, 'button button-shift ShiftRight button-shift_right');
+    this.addEffectsWithKey('ShiftRight', 'capsLockShift', 'capsLock', capsLockShiftBtns, capsLockBtns, 'button button-shift ShiftRight button-shift_right');
 
     // Remove effects from keyboard with special keys (eventListener - KEYUP)
     // METHOD (event.code, isFalseFlag1, isTrueFlag, showButtonsArray,
     // hideButtonsArray, disActiveClass, isFalseFlag2 = false)
 
-    this.removeEffectsWithKey('CapsLock', 'nothing', 'capsLock', nothingBtns, capsLockBtns, 'button button-caps-lock active');
-    this.removeEffectsWithKey('ShiftLeft', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift active', 'button button-shift button-shift_right active');
-    this.removeEffectsWithKey('ShiftLeft', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift active', 'button button-shift button-shift_right active');
-    this.removeEffectsWithKey('ShiftRight', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift button-shift_right active', 'button button-shift active');
-    this.removeEffectsWithKey('ShiftRight', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift button-shift_right active', 'button button-shift active');
+    this.removeEffectsWithKey('CapsLock', 'nothing', 'capsLock', nothingBtns, capsLockBtns, 'button button-caps-lock CapsLock active');
+    this.removeEffectsWithKey('ShiftLeft', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift ShiftLeft active', 'button button-shift ShiftRight button-shift_right active');
+    this.removeEffectsWithKey('ShiftLeft', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift ShiftLeft active', 'button button-shift ShiftRight button-shift_right active');
+    this.removeEffectsWithKey('ShiftRight', 'nothing', 'shift', nothingBtns, shiftBtns, 'button button-shift ShiftRight button-shift_right active', 'button button-shift ShiftLeft active');
+    this.removeEffectsWithKey('ShiftRight', 'capsLock', 'capsLockShift', capsLockBtns, capsLockShiftBtns, 'button button-shift ShiftRight button-shift_right active', 'button button-shift ShiftLeft active');
 
     // Toggle effects with mouse click (eventListener - click)
     // addEffectWithMouse(nameOfClass, showButtonsArray, hideButtonsArray, toTrueFlag, toFalseFlag)
 
-    this.toggleMouse('button button-caps-lock', capsLockBtns, nothingBtns, 'capsLock', 'nothing');
+    this.toggleMouse('button button-caps-lock CapsLock', capsLockBtns, nothingBtns, 'capsLock', 'nothing');
     this.toggleMouse('button button-shift', shiftBtns, nothingBtns, 'shift', 'nothing');
     this.toggleMouse('button button-shift', capsLockShiftBtns, capsLockBtns, 'capsLockShift', 'capsLock');
   }
@@ -51,13 +51,13 @@ export default class WhatSpecialBtns {
   ) {
     btn.forEach((elem) => {
       elem.addEventListener('click', () => {
-        if ((elem.className === nameOfClass || elem.className === `${nameOfClass} button-shift_right`) && !this[toTrueFlag] && this[toFalseFlag]) {
+        if ((elem.className === nameOfClass || elem.className === `${nameOfClass} ShiftLeft` || elem.className === `${nameOfClass} ShiftRight button-shift_right`) && !this[toTrueFlag] && this[toFalseFlag]) {
           elem.classList.add('active');
           this.show(showButtonsArray);
           this.hide(hideButtonsArray);
           this[toTrueFlag] = true;
           this[toFalseFlag] = false;
-        } else if ((elem.className === `${nameOfClass} active` || elem.className === `${nameOfClass} button-shift_right active`) && this[toTrueFlag] && !this[toFalseFlag]) {
+        } else if ((elem.className === `${nameOfClass} active` || elem.className === `${nameOfClass} ShiftLeft active` || elem.className === `${nameOfClass} ShiftRight button-shift_right active`) && this[toTrueFlag] && !this[toFalseFlag]) {
           elem.classList.remove('active');
           this.show(hideButtonsArray);
           this.hide(showButtonsArray);
