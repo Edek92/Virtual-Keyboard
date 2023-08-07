@@ -1,3 +1,8 @@
+import CreatorOfButtons from './buttons';
+
+const newButtons = new CreatorOfButtons();
+newButtons.starter();
+
 const nothingBtns = document.querySelectorAll('.nothing');
 const shiftBtns = document.querySelectorAll('.shift');
 const capsLockBtns = document.querySelectorAll('.capsLock');

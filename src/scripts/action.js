@@ -17,7 +17,7 @@ const specialButtonsAction = new WhatSpecialBtns();
 languageToggler.toggler();
 specialButtonsAction.toggler();
 
-class ButtonAction {
+export default class ButtonAction {
   constructor(shift = false, capsLock = false, capsLockShift = false, english = true) {
     this.buttonsDataBase = [
       firstRowButtons, secondRowButtons, thirdRowButtons, fourthRowButtons, fifthRowButtons,
@@ -45,10 +45,6 @@ class ButtonAction {
       this.removeEventWithKey(event.code);
     });
 
-    document.addEventListener('click', () => {
-      this.cursorStart = textarea.selectionStart;
-      this.cursorEnd = textarea.selectionEnd;
-    });
     this.addEventWithMouse();
   }
 
@@ -61,25 +57,29 @@ class ButtonAction {
 
       this.keyCodesDataBase.forEach((elem, i) => {
         elem.forEach((e, j) => {
-          if (event.target && event.target.parentNode.parentNode.classList.contains(e) && !event.target.parentNode.parentNode.classList.contains('Tab')
-          && !event.target.parentNode.parentNode.classList.contains('CapsLock') && !event.target.parentNode.parentNode.classList.contains('ShiftLeft')
-          && !event.target.parentNode.parentNode.classList.contains('ControlLeft') && !event.target.parentNode.parentNode.classList.contains('AltLeft')
-          && !event.target.parentNode.parentNode.classList.contains('MetaLeft') && !event.target.parentNode.parentNode.classList.contains('Space')
-          && !event.target.parentNode.parentNode.classList.contains('MetaRight') && !event.target.parentNode.parentNode.classList.contains('AltRight')
-          && !event.target.parentNode.parentNode.classList.contains('ShiftRight') && !event.target.parentNode.parentNode.classList.contains('Enter')
-          && !event.target.parentNode.parentNode.classList.contains('Backspace') && !event.target.parentNode.parentNode.classList.contains('Fn')) {
-            textarea.setRangeText(this.buttonsDataBase[i][j][this.whatLetter], this.cursorStart, this.cursorEnd, 'end');
-          } else if (event.target && event.target.parentNode.parentNode.classList.contains('Tab')) {
-            textarea.setRangeText('   ', this.cursorStart, this.cursorEnd, 'end');
-          } else if (event.target && event.target.parentNode.parentNode.classList.contains('Space')) {
-            textarea.setRangeText(' ', this.cursorStart, this.cursorEnd, 'end');
-          } else if (event.target && event.target.parentNode.parentNode.classList.contains('Enter')) {
-            textarea.setRangeText('\n', this.cursorStart, this.cursorEnd, 'end');
-          } else if (event.target && event.target.parentNode.parentNode.classList.contains('Backspace')) {
-            if (this.cursorStart > 0 && this.cursorStart === this.cursorEnd) {
-              textarea.setRangeText('', this.cursorStart - 1, this.cursorEnd, 'end');
-            } else if (this.cursorStart >= 0 && this.cursorStart !== this.cursorEnd) {
-              textarea.setRangeText('', this.cursorStart, this.cursorEnd, 'end');
+          if (event.target
+            && (event.target.parentNode.parentNode.classList.contains(e)
+            || event.target.classList.contains(e))) {
+            if (event.target.parentNode.parentNode.classList.contains(e) && !event.target.parentNode.parentNode.classList.contains('Tab')
+            && !event.target.parentNode.parentNode.classList.contains('ControlLeft') && !event.target.parentNode.parentNode.classList.contains('AltLeft')
+            && !event.target.parentNode.parentNode.classList.contains('MetaLeft') && !event.target.classList.contains('Space')
+            && !event.target.parentNode.parentNode.classList.contains('CapsLock') && !event.target.parentNode.parentNode.classList.contains('ShiftLeft')
+            && !event.target.parentNode.parentNode.classList.contains('MetaRight') && !event.target.parentNode.parentNode.classList.contains('AltRight')
+            && !event.target.parentNode.parentNode.classList.contains('ShiftRight') && !event.target.parentNode.parentNode.classList.contains('Enter')
+            && !event.target.parentNode.parentNode.classList.contains('Backspace') && !event.target.parentNode.parentNode.classList.contains('Fn')) {
+              textarea.setRangeText(this.buttonsDataBase[i][j][this.whatLetter], this.cursorStart, this.cursorEnd, 'end');
+            } else if (event.target.parentNode.parentNode.classList.contains('Tab')) {
+              textarea.setRangeText('   ', this.cursorStart, this.cursorEnd, 'end');
+            } else if (event.target.classList.contains('Space')) {
+              textarea.setRangeText(' ', this.cursorStart, this.cursorEnd, 'end');
+            } else if (event.target.parentNode.parentNode.classList.contains('Enter')) {
+              textarea.setRangeText('\n', this.cursorStart, this.cursorEnd, 'end');
+            } else if (event.target.parentNode.parentNode.classList.contains('Backspace')) {
+              if (this.cursorStart > 0 && this.cursorStart === this.cursorEnd) {
+                textarea.setRangeText('', this.cursorStart - 1, this.cursorEnd, 'end');
+              } else if (this.cursorStart >= 0 && this.cursorStart !== this.cursorEnd) {
+                textarea.setRangeText('', this.cursorStart, this.cursorEnd, 'end');
+              }
             }
           }
         });
@@ -162,7 +162,3 @@ class ButtonAction {
     }
   }
 }
-
-new ButtonAction().pressKey();
-
-export default ButtonAction;

@@ -1,12 +1,11 @@
-const body = document.querySelector('body');
-
-class Creator {
-  constructor(parent) {
-    this.parent = parent;
+export default class Creator {
+  constructor() {
+    this.parent = document.querySelector('.keyboard');
+    this.body = document.querySelector('body');
   }
 
   createField() {
-    if (this.parent === body) {
+    if (!this.parent && this.body) {
       this.addClass('keyboard');
     } else if (this.parent.className === 'keyboard') {
       for (let i = 0; i <= 5; i += 1) {
@@ -42,14 +41,10 @@ class Creator {
     element.classList.add(className1);
     if (className2) { element.classList.add(className2); }
     if (content) { element.textContent = content; }
-    this.parent.append(element);
+    if (this.parent) {
+      this.parent.append(element);
+    } else {
+      this.body.append(element);
+    }
   }
 }
-
-new Creator(body).createField();
-
-const keyboard = document.querySelector('.keyboard');
-
-new Creator(keyboard).createField();
-
-export default Creator;

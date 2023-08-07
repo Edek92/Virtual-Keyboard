@@ -3,14 +3,18 @@ import {
   firstRowKeyCodes, secondRawKeyCodes, thirdRawKeyCodes, fourthRowKeyCodes, fifthRowKeyCodes,
 } from './database';
 
+import Creator from './wrappers';
+
+const wrapperCreator = new Creator();
+wrapperCreator.createField();
+
+const buttonCreator = new Creator();
+buttonCreator.createField();
+
 const rows = document.querySelectorAll('.row');
 
-class CreatorOfButtons {
-  constructor(parent, symbolsList, keyCodeList, iterator) {
-    this.parent = parent;
-    this.symbolsList = symbolsList;
-    this.keyCodeList = keyCodeList;
-    this.iterator = iterator;
+export default class CreatorOfButtons {
+  constructor() {
     this.symbolInList = 0;
     this.lang = 'en';
     this.languages = ['en', 'blr'];
@@ -18,7 +22,33 @@ class CreatorOfButtons {
     this.cases = ['nothing', 'shift', 'capsLock', 'capsLockShift'];
   }
 
-  buttonCreator() {
+  starter() {
+    for (let i = 0; i < 14; i += 1) {
+      this.buttonCreator(rows[0], firstRowButtons, firstRowKeyCodes, i);
+    }
+
+    for (let i = 0; i < 14; i += 1) {
+      this.buttonCreator(rows[1], secondRowButtons, secondRawKeyCodes, i);
+    }
+
+    for (let i = 0; i < 13; i += 1) {
+      this.buttonCreator(rows[2], thirdRowButtons, thirdRawKeyCodes, i);
+    }
+
+    for (let i = 0; i < 13; i += 1) {
+      this.buttonCreator(rows[3], fourthRowButtons, fourthRowKeyCodes, i);
+    }
+
+    for (let i = 0; i < 10; i += 1) {
+      this.buttonCreator(rows[4], fifthRowButtons, fifthRowKeyCodes, i);
+    }
+  }
+
+  buttonCreator(parent, symbolsList, keyCodeList, iterator) {
+    this.parent = parent;
+    this.symbolsList = symbolsList;
+    this.keyCodeList = keyCodeList;
+    this.iterator = iterator;
     const elem = document.createElement('div');
     const children = this.parent.childNodes;
     elem.classList.add('button', `button-${this.symbolsList[this.iterator][0]}`.replace(/ /ig, '-'), `${this.keyCodeList[this.iterator]}`);
@@ -69,25 +99,3 @@ class CreatorOfButtons {
     }
   }
 }
-
-for (let i = 0; i < 14; i += 1) {
-  new CreatorOfButtons(rows[0], firstRowButtons, firstRowKeyCodes, i).buttonCreator();
-}
-
-for (let i = 0; i < 14; i += 1) {
-  new CreatorOfButtons(rows[1], secondRowButtons, secondRawKeyCodes, i).buttonCreator();
-}
-
-for (let i = 0; i < 13; i += 1) {
-  new CreatorOfButtons(rows[2], thirdRowButtons, thirdRawKeyCodes, i).buttonCreator();
-}
-
-for (let i = 0; i < 13; i += 1) {
-  new CreatorOfButtons(rows[3], fourthRowButtons, fourthRowKeyCodes, i).buttonCreator();
-}
-
-for (let i = 0; i < 10; i += 1) {
-  new CreatorOfButtons(rows[4], fifthRowButtons, fifthRowKeyCodes, i).buttonCreator();
-}
-
-export default CreatorOfButtons;
